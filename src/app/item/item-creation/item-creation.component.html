@@ -1,0 +1,91 @@
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-body">
+            <form #itemForm="ngForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-label>Item Name</mat-label>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <input matInput placeholder="Item Name" name="itemName" type="text"
+                                   [(ngModel)]="item.itemName" #ItemName="ngModel"
+                                   required>
+                        </mat-form-field>
+                        <div *ngIf="ItemName.errors && (ItemName.dirty || ItemName.touched)">
+                            <small class="gene-block" *ngIf="ItemName.errors.required && ItemName.touched"
+                                   class="mat-text-warn">
+                                You must include a item name.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-label>Carton Price</mat-label>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <input type="number" min="0" matInput placeholder="Carton Price" name="cartonName"
+                                   [(ngModel)]="item.cartonPrice" #CartonPrice="ngModel"
+                                   required>
+                        </mat-form-field>
+                        <div *ngIf="CartonPrice.errors && (CartonPrice.dirty || CartonPrice.touched)">
+                            <small class="gene-block" *ngIf="CartonPrice.errors.required && CartonPrice.touched"
+                                   class="mat-text-warn">
+                                You must include a Carton Price.
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-label>Unit Per Carton</mat-label>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <input type="number" min="0" matInput placeholder="Unit Per Carton" name="unitPerCarton"
+                                  [(ngModel)]="item.unitPerCarton" #UnitPerCarton="ngModel"
+                                   required>
+                        </mat-form-field>
+                        <div *ngIf="UnitPerCarton.errors && (UnitPerCarton.dirty || UnitPerCarton.touched)">
+                            <small class="gene-block" *ngIf="UnitPerCarton.errors.required && UnitPerCarton.touched"
+                                   class="mat-text-warn">
+                                You must include a unit per carton.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-label>Minimum Discount Value</mat-label>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <input type="number" min="0" matInput placeholder="Minimum Discount Value" name="discountMinValue"
+                                    [(ngModel)]="item.discountMinValue" #DiscountMinValue="ngModel">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-label>Discount</mat-label>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <input type="number" min="0" matInput placeholder="Discount" name="discount"
+                                   [(ngModel)]="item.discount" #Discount="ngModel">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-label>Percentage For Single Item</mat-label>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <input type="number" min="0" matInput placeholder="Percentage For Single Item(e.g 30%)" name="percentageForSingleItem"
+                                   [(ngModel)]="item.percentageForSingleItem" #PercentageForSingleItem="ngModel">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-label>Image URL</mat-label>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <input type="text" matInput placeholder="Image URL(e.g google images url)" name="ImageUrl"
+                                   [(ngModel)]="item.imageUrl" #imageUrl="ngModel">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <button mat-raised-button (click)="saveItem()" type="submit" class="btn btn-danger pull-left">Save Item
+                </button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>

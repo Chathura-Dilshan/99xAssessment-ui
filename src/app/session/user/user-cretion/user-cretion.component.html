@@ -1,0 +1,164 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">User Creation</h4>
+                    </div>
+                    <div class="card-body">
+                        <form #userCreationForm="ngForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Username</mat-label>
+                                        <input matInput placeholder="Username" type="text" [(ngModel)]="user.username"
+                                               #Username="ngModel" name="username" required>
+
+                                        <div *ngIf="Username.errors && (Username.dirty || Username.touched)">
+                                            <small class="gene-block"
+                                                   *ngIf="Username.errors.required && Username.touched"
+                                                   class="text-danger">
+                                                You must include a username.
+                                            </small>
+                                        </div>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>First Name</mat-label>
+                                        <input matInput placeholder="First Name" type="text"
+                                               [(ngModel)]="user.firstName"
+                                               #FirstName="ngModel" name="firstName" required>
+
+                                        <div *ngIf="FirstName.errors && (FirstName.dirty || FirstName.touched)">
+                                            <small class="gene-block"
+                                                   *ngIf="FirstName.errors.required && FirstName.touched"
+                                                   class="text-danger">
+                                                You must include a first name.
+                                            </small>
+                                        </div>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline">
+                                        <input matInput placeholder="Second Name" type="text"
+                                               [(ngModel)]="user.secondName"
+                                               #SecondName="ngModel" name="secondName">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Password</mat-label>
+                                        <input matInput placeholder="Password" type="password"
+                                               [(ngModel)]="user.password"
+                                               #Password="ngModel" name="password" required>
+
+                                        <div *ngIf="Password.errors && (Password.dirty || Password.touched)">
+                                            <small class="gene-block"
+                                                   *ngIf="Password.errors.required && Password.touched"
+                                                   class="text-danger">
+                                                You must include a password.
+                                            </small>
+                                        </div>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput placeholder="Email" type="email" [(ngModel)]="user.email"
+                                               #Email="ngModel" name="email" required>
+
+                                        <div *ngIf="Email.errors && (Email.dirty || Email.touched)">
+                                            <small class="gene-block" *ngIf="Email.errors.required && Email.touched"
+                                                   class="text-danger">
+                                                You must include a email.
+                                            </small>
+                                        </div>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Farm</mat-label>
+                                        <mat-select placeholder="FARM" name="farm"
+                                                    [(ngModel)]="user.userType"
+                                                    #Farm="ngModel" required>
+                                            <mat-option value="FARMER">
+                                                FARMER
+                                            </mat-option>
+                                            <mat-option value="TRANSPORTER">
+                                                TRANSPORTER
+                                            </mat-option>
+                                            <mat-option value="WAREHOUSE_HELPER">
+                                                WAREHOUSE HELPER
+                                            </mat-option>
+                                            <mat-option value="PACKING_HELPER">
+                                                PACKING HELPER
+                                            </mat-option>
+                                            <mat-option value="SUPERMARKET_HELPER">
+                                                SUPERMARKET HELPER
+                                            </mat-option>
+                                        </mat-select>
+
+                                        <div *ngIf="Farm.errors && (Farm.dirty || Farm.touched)">
+                                            <small class="gene-block" *ngIf="Farm.errors.required && Farm.touched"
+                                                   class="text-danger">
+                                                You must include a Farm.
+                                            </small>
+                                        </div>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Role & Permission</mat-label>
+                                        <mat-select placeholder="Select Role List" name="Role"
+                                                    [(ngModel)]="user.rolesList"
+                                                    #Role="ngModel" multiple required>
+                                            <mat-option>
+                                                <ngx-mat-select-search
+                                                        [placeholderLabel]="'Find Role...'"
+                                                        [noEntriesFoundLabel]="'No matching role found'"
+                                                        [(ngModel)]="user.roleSearch" name="roleSearch"
+                                                        (ngModelChange)="filteredRolesList"></ngx-mat-select-search>
+                                            </mat-option>
+                                            <mat-option *ngFor="let role of filteredRolesList"
+                                                        [value]="role.roleSeq">
+                                                {{role.roleName}}
+                                            </mat-option>
+                                        </mat-select>
+
+                                        <div *ngIf="Role.errors && (Role.dirty || Role.touched)">
+                                            <small class="gene-block" *ngIf="Role.errors.required && Role.touched"
+                                                   class="text-danger">
+                                                You must include a role.
+                                            </small>
+                                        </div>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button (click)="saveUser()" [disabled]="userCreationForm.invalid"
+                                            mat-raised-button type="submit" class="btn btn-danger">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

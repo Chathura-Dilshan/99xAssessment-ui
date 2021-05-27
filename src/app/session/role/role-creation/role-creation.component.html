@@ -1,0 +1,43 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Role</h4>
+                    </div>
+                    <div class="card-body">
+                        <form #roleCreationForm="ngForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Role Name</mat-label>
+                                        <input matInput placeholder="Role Name" type="text" [(ngModel)]="role.roleName"
+                                               #RoleName="ngModel" name="roleName" required>
+                                        <div *ngIf="RoleName.errors && (RoleName.dirty || RoleName.touched)">
+                                            <small class="gene-block" *ngIf="RoleName.errors.required && RoleName.touched"
+                                                   class="text-danger">
+                                                You must include a role name.
+                                            </small>
+                                        </div>
+                                    </mat-form-field>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                <button (click)="saveRole()" [disabled]="roleCreationForm.invalid" mat-raised-button
+                                        type="submit" class="btn btn-danger">
+                                    Save
+                                </button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

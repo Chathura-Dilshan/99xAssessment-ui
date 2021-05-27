@@ -1,0 +1,15 @@
+:host zxing-scanner::ng-deep> {
+    max-height: 100px;
+    width: 100px;
+    object-fit: contain;
+}
+
+.center {
+    align-items: center;
+    width: 400px;
+    height: auto;
+    margin: auto;
+}
+
+
+
